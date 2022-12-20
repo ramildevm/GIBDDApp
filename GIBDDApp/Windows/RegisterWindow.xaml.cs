@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GIBDDApp
+namespace GIBDDApp.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для RegisterWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RegisterWindow : Window
     {
-        public MainWindow()
+        public RegisterWindow()
         {
             InitializeComponent();
         }

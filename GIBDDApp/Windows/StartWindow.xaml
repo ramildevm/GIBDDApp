@@ -1,0 +1,69 @@
+﻿<Window x:Class="GIBDDApp.StartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GIBDDApp"
+        mc:Ignorable="d"
+        Closed="Window_Closed"
+        Height="500" Width="750" MinHeight="450" MinWidth="550">
+    <Window.Resources>
+        <Style x:Key="Lbl13" TargetType="Label">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Roboto"/>
+        </Style>
+        <Style x:Key="LblLeft" TargetType="Label">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontFamily" Value="Roboto"/>
+            <Setter Property="Margin" Value="12,0,0,0"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition  Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition  Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Image Height="50" Source="/Resources/gibdd_logo.png" />
+            <Label Content="ГИБДД" Grid.Column="1" FontFamily="Rockwell" VerticalAlignment="Center" FontSize="36" Foreground="Black" FontWeight="Bold" />
+        </Grid>
+        <Border Width="200" Height="Auto" Margin="10" Background="#FFB5D5CA" CornerRadius="10" Grid.Column="1" Grid.Row="1">
+            <StackPanel >
+                <Label Content="Добро пожаловать!" Style="{StaticResource Lbl13}" Margin="0,5,0,5"/>
+                <Label Content="Логин" Style="{StaticResource LblLeft}" />
+                <TextBox x:Name="txtLogin" Width="171" Height="25" VerticalContentAlignment="Center" Background="White" >
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label Content="Пароль" Style="{StaticResource LblLeft}"/>
+                <Border CornerRadius="5" BorderThickness="1" Width="Auto" Margin="15,0,15,0" Height="25" Background="White" BorderBrush="#ABADB3">
+                    <PasswordBox x:Name="txtPassword" BorderThickness="0" Background="Transparent" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+                </Border>
+                <TextBlock Margin="0,5,0,0" HorizontalAlignment="Center" FontSize="12"><Hyperlink Foreground="#150098" Click="Hyperlink_Click">Нет аккаунта? Создайте его!</Hyperlink></TextBlock>
+                <Button Name="loginBtn" Content="Войти" Width="171" Height="36" Cursor="Hand" FontWeight="Bold" Background="White" Margin="0,17,0,15" BorderThickness="0" Click="ButtonLogin_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
