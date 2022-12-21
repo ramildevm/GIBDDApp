@@ -23,13 +23,14 @@ namespace GIBDDApp
     /// </summary>
     public partial class StartWindow : Window
     {
-        public System.Windows.Threading.DispatcherTimer sessionTimer1;
-        TimeSpan _time;
         System.Windows.Threading.DispatcherTimer logInAccessTimer = new System.Windows.Threading.DispatcherTimer();
 
         public StartWindow()
         {
             InitializeComponent();
+            txtLogin.Text = "ramil";
+            txtPassword.Password = "ramil";
+
             logInAccessTimer.Interval = getTimeFromFile();
             logInAccessTimer.Tick += LogInAccessTimer_Tick;
             logInAccessTimer.Start();
@@ -61,18 +62,9 @@ namespace GIBDDApp
             SessionContext.SetTimer();
             logInAccessTimer.Stop();
         }
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            var register = new RegisterWindow();
-            this.Close();
-            register.ShowDialog();
-        }
-
-
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(SessionContext.Attempts.ToString());
-            if (SessionContext.Attempts >= 2)
+            if (SessionContext.Attempts >= 3)
             {
                 loginBtn.IsEnabled = false;
                 logInAccessTimer.Interval = new TimeSpan(0,1,0);
@@ -81,52 +73,45 @@ namespace GIBDDApp
                 return;
             }
             File.WriteAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Timer", "clock.txt"), "");
-            string result = LoginMethod(txtLogin.Text, txtPassword.Password);
+
+            string result = LoginMethod(txtLogin.Text.Replace(" ",""), txtPassword.Password.Replace(" ", ""));
             if (result == $"Добро пожаловать, {txtLogin.Text}!")
             {
-                SessionContext.CurrentTime = TimeSpan.FromMinutes(1);
-                App.sessionTimer.Start();
-                /* 
                 if (SessionContext.CurrentUser.Role == "Инспектор")
                 {
-                    var SellerWindow = new SellerMainWindow();
-                    this.Hide();
-                    SellerWindow.ShowDialog();
-                    this.Show();
+                    var driversWindow = new DriversMainWindow();
+                    this.Close();
+                    driversWindow.ShowDialog();
                 }
                 else
                 {
                     MessageBox.Show("Произошла ошибка с определением роли пользователя", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
-                } 
-                */
+                }
+
                 txtLogin.Text = "";
                 txtPassword.Password = "";
             }
             else
             {
                 SessionContext.Attempts++;
-                MessageBox.Show(result, "Результат", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(result + $"\nОсталось попыток: {3-SessionContext.Attempts}", "Результат", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
         private string LoginMethod(string login, string password)
         {
-            //if (login.Length == 0 || password.Length == 0)
-            //    return "Не все поля заполнены!";
-            //using (var db = new KurortDBEntities())
-            //{
-            //    Users user = (from u in db.Users where u.Login == login select u).FirstOrDefault();
-            //    if (user == null)
-            //        return "Пользователя с таким логином не существует!";
-            //    if (user.Password != password)
-            //        return "Неверный пароль!";
-            //    SessionContext.CurrentUser = user;
-            //}
-            return $"Добро пожаловать , {login}!";
-        }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
+            if (login.Length == 0 || password.Length == 0)
+                return "Не все поля заполнены!";
+            using (var db = new EntityModel())
+            {
+                Users user = (from u in db.Users where u.Login == login select u).FirstOrDefault();
+                if (user == null)
+                    return "Пользователя с таким логином не существует!";
+                if (user.Password != password)
+                    return "Неверный пароль!";
+                SessionContext.CurrentUser = user;
+            }
+            return $"Добро пожаловать, {login}!";
         }
     }
 }

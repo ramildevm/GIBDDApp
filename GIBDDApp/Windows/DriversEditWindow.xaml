@@ -1,0 +1,117 @@
+﻿<Window x:Class="GIBDDApp.Windows.DriversEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GIBDDApp.Windows"
+        mc:Ignorable="d" Icon="/Resources/gibdd_logo.png"
+        MouseMove="Window_MouseMove"
+        Title="Карточка водителя" Height="650" Width="800" MinHeight="550" MinWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Height="80" Background="#FFB5D5CA">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="FontFamily" Value="Comic Sans MS"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="24"/>
+                    <Setter Property="FontFamily" Value="Comic Sans MS"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </Grid.Resources>
+            <Image Margin="10" Source="/Resources/gibdd_logo.png" />
+            <TextBlock Grid.Column="1" Text="ГИБДД" TextAlignment="Left"/>
+        </Grid>
+        <ScrollViewer Grid.Row="1">
+            <Grid Margin="0,0,0, 60" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontFamily" Value="Comic Sans MS"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="TextAlignment" Value="Left"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="10"/>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontFamily" Value="Comic Sans MS"/>
+                        <Setter Property="TextAlignment" Value="Left"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Margin" Value="10"/>
+                    </Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Orange"/>
+                        <Setter Property="FontFamily" Value="Comic Sans MS"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+                </Grid.Resources>
+                <TextBlock Grid.Column="0" Grid.Row="0"  Text="Имя:"/>
+                <TextBox Grid.Column="1" Grid.Row="0" MaxLength="50" x:Name="txtName"/>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Второе имя"/>
+                <TextBox Grid.Column="1" Grid.Row="1" MaxLength="50" x:Name="txtMiddleName"/>
+                <TextBlock Grid.Column="0" Grid.Row="2"  Text="Серия паспорта:"/>
+                <TextBox Grid.Column="1" Grid.Row="2" MaxLength="5" x:Name="txtSeries"/>                
+                <TextBlock Grid.Column="0" Grid.Row="3"  Text="Номер паспорта:"/>
+                <TextBox Grid.Column="1" Grid.Row="3" MaxLength="6" x:Name="txtNumber"/>
+                <TextBlock Grid.Column="0" Grid.Row="4" Text="Индекс:"/>
+                <TextBox Grid.Column="1" Grid.Row="4" MaxLength="6" x:Name="txtPostCode"/>
+                <TextBlock Grid.Column="0" Grid.Row="5"  Text="Адрес:"/>
+                <TextBox Grid.Column="1" Grid.Row="5" MaxLength="100" x:Name="txtAddress"/>
+                <TextBlock Grid.Column="0" Grid.Row="6"  Text="Адрес проживания:"/>
+                <TextBox Grid.Column="1" Grid.Row="6" MaxLength="100" x:Name="txtAdressLife"/>
+                <TextBlock Grid.Column="0" Grid.Row="7" Text="Компания:" />
+                <TextBox Grid.Column="1" Grid.Row="7" MaxLength="50" x:Name="txtCompany"/>
+                <TextBlock Grid.Column="0" Grid.Row="8"  Text="Должность:"/>
+                <TextBox Grid.Column="1" Grid.Row="8" MaxLength="50" x:Name="txtJob"/>
+                <TextBlock Grid.Column="0" Grid.Row="9"  Text="Телефон:"/>
+                <TextBox Grid.Column="1" Grid.Row="9" MaxLength="20" x:Name="txtPhone"/>
+                <TextBlock Grid.Column="0" Grid.Row="10"  Text="Email:"/>
+                <TextBox Grid.Column="1" Grid.Row="10" MaxLength="100" x:Name="txtEmail"/>
+                <TextBlock Grid.Column="0" Grid.Row="11"  Text="Фото:"/>
+                <UniformGrid Grid.Column="1" Grid.Row="11" Columns="2">
+                <TextBox  MaxLength="60" x:Name="txtPhoto" IsReadOnly="True"/>
+                    <Button Name="btnChoose" Content="Выбрать" Click="ButtonPick_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Background="#FFB5D5CA" FontFamily="Comic Sans MS" FontWeight="Bold" Grid.Row="1" Height="25" Width="150"/>
+                </UniformGrid>
+                <TextBlock Grid.Column="0" Grid.Row="12"  Text="Описание:"/>
+                <RichTextBox Grid.Column="1" Grid.Row="12" x:Name="txtDescription"/>
+            </Grid>
+        </ScrollViewer>
+        <Button Name="btnClose" Content="Отмена" Click="ButtonClose_Click" Background="#FCE0A9AF" FontFamily="Comic Sans MS" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="20" Grid.Row="1" Height="40" Width="150"/>
+        <Button Name="btnSave" Content="Сохранить" Click="ButtonSave_Click" Background="#FCE0A9AF" FontFamily="Comic Sans MS" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Margin="20" Grid.Row="1" Height="40" Width="150"/>
+    </Grid>
+</Window>

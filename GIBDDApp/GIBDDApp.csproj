@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,7 +64,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Windows\RegisterWindow.xaml">
+    <Page Include="Windows\DriversEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DriversMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -67,10 +80,24 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Colors.cs" />
+    <Compile Include="Models\Drivers.cs" />
+    <Compile Include="Models\DTP.cs" />
+    <Compile Include="Models\DTPMembers.cs" />
+    <Compile Include="Models\EngineTypes.cs" />
+    <Compile Include="Models\EntityModel.cs" />
+    <Compile Include="Models\Fines.cs" />
+    <Compile Include="Models\Licences.cs" />
+    <Compile Include="Models\LicenseStatus.cs" />
+    <Compile Include="Models\Regions.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Utils\SessionContext.cs" />
     <Compile Include="Utils\SystemContext.cs" />
-    <Compile Include="Windows\RegisterWindow.xaml.cs">
-      <DependentUpon>RegisterWindow.xaml</DependentUpon>
+    <Compile Include="Windows\DriversEditWindow.xaml.cs">
+      <DependentUpon>DriversEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DriversMainWindow.xaml.cs">
+      <DependentUpon>DriversMainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
@@ -95,6 +122,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -105,6 +133,208 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\gibdd_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Drivers\001-happy-18.png" />
+    <Resource Include="Resources\Drivers\002-cool-5.png" />
+    <Resource Include="Resources\Drivers\003-happy-17.png" />
+    <Resource Include="Resources\Drivers\004-surprised-9.png" />
+    <Resource Include="Resources\Drivers\005-shocked-4.png" />
+    <Resource Include="Resources\Drivers\006-shocked-3.png" />
+    <Resource Include="Resources\Drivers\007-nervous-2.png" />
+    <Resource Include="Resources\Drivers\008-nervous-1.png" />
+    <Resource Include="Resources\Drivers\009-angry-6.png" />
+    <Resource Include="Resources\Drivers\010-drool.png" />
+    <Resource Include="Resources\Drivers\011-tired-2.png" />
+    <Resource Include="Resources\Drivers\012-tongue-7.png" />
+    <Resource Include="Resources\Drivers\013-tongue-6.png" />
+    <Resource Include="Resources\Drivers\014-tongue-5.png" />
+    <Resource Include="Resources\Drivers\015-smile-1.png" />
+    <Resource Include="Resources\Drivers\016-sleeping-1.png" />
+    <Resource Include="Resources\Drivers\017-nervous.png" />
+    <Resource Include="Resources\Drivers\018-surprised-8.png" />
+    <Resource Include="Resources\Drivers\019-tongue-4.png" />
+    <Resource Include="Resources\Drivers\020-happy-16.png" />
+    <Resource Include="Resources\Drivers\021-wink-1.png" />
+    <Resource Include="Resources\Drivers\022-laughing-2.png" />
+    <Resource Include="Resources\Drivers\023-laughing-1.png" />
+    <Resource Include="Resources\Drivers\024-sweat-1.png" />
+    <Resource Include="Resources\Drivers\025-happy-15.png" />
+    <Resource Include="Resources\Drivers\026-happy-14.png" />
+    <Resource Include="Resources\Drivers\027-laughing.png" />
+    <Resource Include="Resources\Drivers\028-happy-13.png" />
+    <Resource Include="Resources\Drivers\029-happy-12.png" />
+    <Resource Include="Resources\Drivers\030-crying-8.png" />
+    <Resource Include="Resources\Drivers\031-crying-7.png" />
+    <Resource Include="Resources\Drivers\032-bored.png" />
+    <Resource Include="Resources\Drivers\033-cool-4.png" />
+    <Resource Include="Resources\Drivers\034-angry-5.png" />
+    <Resource Include="Resources\Drivers\035-sad-14.png" />
+    <Resource Include="Resources\Drivers\036-angry-4.png" />
+    <Resource Include="Resources\Drivers\037-happy-11.png" />
+    <Resource Include="Resources\Drivers\038-angry-3.png" />
+    <Resource Include="Resources\Drivers\039-cyclops-1.png" />
+    <Resource Include="Resources\Drivers\040-surprised-7.png" />
+    <Resource Include="Resources\Drivers\041-thinking-2.png" />
+    <Resource Include="Resources\Drivers\042-book.png" />
+    <Resource Include="Resources\Drivers\043-baby-boy.png" />
+    <Resource Include="Resources\Drivers\044-dead-1.png" />
+    <Resource Include="Resources\Drivers\045-star.png" />
+    <Resource Include="Resources\Drivers\046-dubious.png" />
+    <Resource Include="Resources\Drivers\047-phone-call.png" />
+    <Resource Include="Resources\Drivers\048-moon.png" />
+    <Resource Include="Resources\Drivers\049-robot.png" />
+    <Resource Include="Resources\Drivers\050-flower.png" />
+    <Resource Include="Resources\Drivers\051-happy-10.png" />
+    <Resource Include="Resources\Drivers\052-happy-9.png" />
+    <Resource Include="Resources\Drivers\053-tired-1.png" />
+    <Resource Include="Resources\Drivers\054-ugly-3.png" />
+    <Resource Include="Resources\Drivers\055-tongue-3.png" />
+    <Resource Include="Resources\Drivers\056-vampire.png" />
+    <Resource Include="Resources\Drivers\057-music-1.png" />
+    <Resource Include="Resources\Drivers\058-popcorn.png" />
+    <Resource Include="Resources\Drivers\059-nurse.png" />
+    <Resource Include="Resources\Drivers\060-sad-13.png" />
+    <Resource Include="Resources\Drivers\061-graduated-1.png" />
+    <Resource Include="Resources\Drivers\062-happy-8.png" />
+    <Resource Include="Resources\Drivers\063-hungry.png" />
+    <Resource Include="Resources\Drivers\064-police.png" />
+    <Resource Include="Resources\Drivers\065-crying-6.png" />
+    <Resource Include="Resources\Drivers\066-happy-7.png" />
+    <Resource Include="Resources\Drivers\067-sun.png" />
+    <Resource Include="Resources\Drivers\068-father-2.png" />
+    <Resource Include="Resources\Drivers\069-happy-6.png" />
+    <Resource Include="Resources\Drivers\070-late.png" />
+    <Resource Include="Resources\Drivers\071-heart.png" />
+    <Resource Include="Resources\Drivers\072-sick-3.png" />
+    <Resource Include="Resources\Drivers\073-sad-12.png" />
+    <Resource Include="Resources\Drivers\074-in-love-10.png" />
+    <Resource Include="Resources\Drivers\075-shocked-2.png" />
+    <Resource Include="Resources\Drivers\076-happy-5.png" />
+    <Resource Include="Resources\Drivers\077-shocked-1.png" />
+    <Resource Include="Resources\Drivers\078-cool-3.png" />
+    <Resource Include="Resources\Drivers\079-crying-5.png" />
+    <Resource Include="Resources\Drivers\080-zombie.png" />
+    <Resource Include="Resources\Drivers\081-pain.png" />
+    <Resource Include="Resources\Drivers\082-cyclops.png" />
+    <Resource Include="Resources\Drivers\083-sweat.png" />
+    <Resource Include="Resources\Drivers\084-thief.png" />
+    <Resource Include="Resources\Drivers\085-sad-11.png" />
+    <Resource Include="Resources\Drivers\086-kiss-4.png" />
+    <Resource Include="Resources\Drivers\087-father-1.png" />
+    <Resource Include="Resources\Drivers\088-father.png" />
+    <Resource Include="Resources\Drivers\089-angel-1.png" />
+    <Resource Include="Resources\Drivers\090-happy-4.png" />
+    <Resource Include="Resources\Drivers\091-sad-10.png" />
+    <Resource Include="Resources\Drivers\092-outrage-1.png" />
+    <Resource Include="Resources\Drivers\093-ugly-2.png" />
+    <Resource Include="Resources\Drivers\094-ugly-1.png" />
+    <Resource Include="Resources\Drivers\095-scared.png" />
+    <Resource Include="Resources\Drivers\096-tongue-2.png" />
+    <Resource Include="Resources\Drivers\097-sad-9.png" />
+    <Resource Include="Resources\Drivers\098-nerd-9.png" />
+    <Resource Include="Resources\Drivers\099-greed-2.png" />
+    <Resource Include="Resources\Drivers\100-whistle.png" />
+    <Resource Include="Resources\Drivers\101-nerd-8.png" />
+    <Resource Include="Resources\Drivers\102-muted-4.png" />
+    <Resource Include="Resources\Drivers\103-in-love-9.png" />
+    <Resource Include="Resources\Drivers\104-in-love-8.png" />
+    <Resource Include="Resources\Drivers\105-kiss-3.png" />
+    <Resource Include="Resources\Drivers\106-in-love-7.png" />
+    <Resource Include="Resources\Drivers\107-ugly.png" />
+    <Resource Include="Resources\Drivers\108-nerd-7.png" />
+    <Resource Include="Resources\Drivers\109-nerd-6.png" />
+    <Resource Include="Resources\Drivers\110-crying-4.png" />
+    <Resource Include="Resources\Drivers\111-muted-3.png" />
+    <Resource Include="Resources\Drivers\112-nerd-5.png" />
+    <Resource Include="Resources\Drivers\113-kiss-2.png" />
+    <Resource Include="Resources\Drivers\114-greed-1.png" />
+    <Resource Include="Resources\Drivers\115-pirate-1.png" />
+    <Resource Include="Resources\Drivers\116-music.png" />
+    <Resource Include="Resources\Drivers\117-confused-2.png" />
+    <Resource Include="Resources\Drivers\118-nerd-4.png" />
+    <Resource Include="Resources\Drivers\119-greed.png" />
+    <Resource Include="Resources\Drivers\120-nerd-3.png" />
+    <Resource Include="Resources\Drivers\121-crying-3.png" />
+    <Resource Include="Resources\Drivers\122-cheering.png" />
+    <Resource Include="Resources\Drivers\123-surprised-6.png" />
+    <Resource Include="Resources\Drivers\124-muted-2.png" />
+    <Resource Include="Resources\Drivers\125-sick-2.png" />
+    <Resource Include="Resources\Drivers\126-graduated.png" />
+    <Resource Include="Resources\Drivers\127-angry-2.png" />
+    <Resource Include="Resources\Drivers\128-in-love-6.png" />
+    <Resource Include="Resources\Drivers\129-cool-2.png" />
+    <Resource Include="Resources\Drivers\130-confused-1.png" />
+    <Resource Include="Resources\Drivers\131-sad-8.png" />
+    <Resource Include="Resources\Drivers\132-nerd-2.png" />
+    <Resource Include="Resources\Drivers\133-birthday-boy.png" />
+    <Resource Include="Resources\Drivers\134-surprised-5.png" />
+    <Resource Include="Resources\Drivers\135-selfie.png" />
+    <Resource Include="Resources\Drivers\136-tongue-1.png" />
+    <Resource Include="Resources\Drivers\137-smart-1.png" />
+    <Resource Include="Resources\Drivers\138-smart.png" />
+    <Resource Include="Resources\Drivers\139-surprised-4.png" />
+    <Resource Include="Resources\Drivers\140-3d-glasses.png" />
+    <Resource Include="Resources\Drivers\141-in-love-5.png" />
+    <Resource Include="Resources\Drivers\142-sleeping.png" />
+    <Resource Include="Resources\Drivers\143-pirate.png" />
+    <Resource Include="Resources\Drivers\144-santa-claus.png" />
+    <Resource Include="Resources\Drivers\145-wink.png" />
+    <Resource Include="Resources\Drivers\146-in-love-4.png" />
+    <Resource Include="Resources\Drivers\147-tired.png" />
+    <Resource Include="Resources\Drivers\148-bang.png" />
+    <Resource Include="Resources\Drivers\149-baby.png" />
+    <Resource Include="Resources\Drivers\150-tongue.png" />
+    <Resource Include="Resources\Drivers\151-sick-1.png" />
+    <Resource Include="Resources\Drivers\152-outrage.png" />
+    <Resource Include="Resources\Drivers\153-injury.png" />
+    <Resource Include="Resources\Drivers\154-dead.png" />
+    <Resource Include="Resources\Drivers\155-rich-1.png" />
+    <Resource Include="Resources\Drivers\156-sick.png" />
+    <Resource Include="Resources\Drivers\157-angel.png" />
+    <Resource Include="Resources\Drivers\158-nerd-1.png" />
+    <Resource Include="Resources\Drivers\159-crying-2.png" />
+    <Resource Include="Resources\Drivers\160-crying-1.png" />
+    <Resource Include="Resources\Drivers\161-muted-1.png" />
+    <Resource Include="Resources\Drivers\162-surprised-3.png" />
+    <Resource Include="Resources\Drivers\163-crying.png" />
+    <Resource Include="Resources\Drivers\164-sad-7.png" />
+    <Resource Include="Resources\Drivers\165-cool-1.png" />
+    <Resource Include="Resources\Drivers\166-happy-3.png" />
+    <Resource Include="Resources\Drivers\167-thinking-1.png" />
+    <Resource Include="Resources\Drivers\168-muted.png" />
+    <Resource Include="Resources\Drivers\169-confused.png" />
+    <Resource Include="Resources\Drivers\170-happy-2.png" />
+    <Resource Include="Resources\Drivers\171-thinking.png" />
+    <Resource Include="Resources\Drivers\172-nerd.png" />
+    <Resource Include="Resources\Drivers\173-in-love-3.png" />
+    <Resource Include="Resources\Drivers\174-hypnotized.png" />
+    <Resource Include="Resources\Drivers\175-cool.png" />
+    <Resource Include="Resources\Drivers\176-shocked.png" />
+    <Resource Include="Resources\Drivers\177-easter.png" />
+    <Resource Include="Resources\Drivers\178-surprised-2.png" />
+    <Resource Include="Resources\Drivers\179-surprised-1.png" />
+    <Resource Include="Resources\Drivers\180-surprised.png" />
+    <Resource Include="Resources\Drivers\181-furious.png" />
+    <Resource Include="Resources\Drivers\182-sad-6.png" />
+    <Resource Include="Resources\Drivers\183-sad-5.png" />
+    <Resource Include="Resources\Drivers\184-sad-4.png" />
+    <Resource Include="Resources\Drivers\185-sad-3.png" />
+    <Resource Include="Resources\Drivers\186-angry-1.png" />
+    <Resource Include="Resources\Drivers\187-rich.png" />
+    <Resource Include="Resources\Drivers\188-sad-2.png" />
+    <Resource Include="Resources\Drivers\189-happy-1.png" />
+    <Resource Include="Resources\Drivers\190-sad-1.png" />
+    <Resource Include="Resources\Drivers\191-sad.png" />
+    <Resource Include="Resources\Drivers\192-smile.png" />
+    <Resource Include="Resources\Drivers\193-in-love-2.png" />
+    <Resource Include="Resources\Drivers\194-happy.png" />
+    <Resource Include="Resources\Drivers\195-kiss-1.png" />
+    <Resource Include="Resources\Drivers\196-in-love-1.png" />
+    <Resource Include="Resources\Drivers\197-in-love.png" />
+    <Resource Include="Resources\Drivers\198-kiss.png" />
+    <Resource Include="Resources\Drivers\199-angry.png" />
+    <Resource Include="Resources\Drivers\200-sleepy.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
