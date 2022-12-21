@@ -64,11 +64,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\FinesMainWindow.xaml.cs">
+      <DependentUpon>FinesMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LicenceEditWindow.xaml.cs">
+      <DependentUpon>LicenceEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StatusHistoryWindow.xaml.cs">
+      <DependentUpon>StatusHistoryWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Windows\DriversEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\DriversMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\FinesMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\LicenceEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -110,6 +127,10 @@
       <DependentUpon>StartWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\StatusHistoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -48,9 +48,21 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Button  Margin="5" Panel.ZIndex="{Binding Path=Btn1}" Height="20" Width="20" Background="Red"/>
-                                <Button  Margin="5" Panel.ZIndex="{Binding Path=Btn2}" Height="20" Width="20" Background="Gray"/>
-                                <Button  Margin="5" Panel.ZIndex="{Binding Path=Btn3}" Height="20" Width="20" Background="Green"/>
+                                <Button  Margin="5" Panel.ZIndex="{Binding Path=Btn1}" BorderThickness="0" Height="20" Width="20" Background="Red">
+                                    <Button.Clip>
+                                        <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
+                                    </Button.Clip>
+                                </Button>
+                                <Button  Margin="5" Panel.ZIndex="{Binding Path=Btn2}" Height="20" BorderThickness="0" Width="20" Background="Gray">
+                                    <Button.Clip>
+                                        <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
+                                    </Button.Clip>
+                                </Button>
+                                <Button  Margin="5" Panel.ZIndex="{Binding Path=Btn3}" Height="20" BorderThickness="0" Width="20" Background="Green">
+                                    <Button.Clip>
+                                        <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
+                                    </Button.Clip>
+                                </Button>
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -59,7 +71,7 @@
                 <DataGridTextColumn Header="Дата получения" IsReadOnly="True" Binding="{Binding Path=Licence.LicenceDate}"/>
                 <DataGridTextColumn Header="Дата истечения" IsReadOnly="True" Binding="{Binding Path=Licence.ExpireDate}"/>
                 <DataGridTextColumn Header="Категории" IsReadOnly="True" Binding="{Binding Path=Licence.Categories}"/>
-                <DataGridTextColumn Header="Серия" IsReadOnly="True" Binding="{Binding Path=Licence.LicencesSeries}"/>
+                <DataGridTextColumn Header="Серия" IsReadOnly="True" Binding="{Binding Path=Licence.LicenceSeries}"/>
                 <DataGridTextColumn Header="Номер" IsReadOnly="True" Binding="{Binding Path=Licence.LicenceNumber}"/>
                 <DataGridTextColumn Header="VIN" IsReadOnly="True" Binding="{Binding Path=Licence.VIN}"/>
                 <DataGridTextColumn Header="Производитель" IsReadOnly="True" Binding="{Binding Path=Licence.Manufacturer}"/>
@@ -81,6 +93,13 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Margin="5" Click="RowDeleteButton_Click" Background="#FCE0A9AF" Content="Удалить"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Margin="5" Click="RowStatusHistory_Click" Background="#FCE0A9AF" Content="Посмотреть историю"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

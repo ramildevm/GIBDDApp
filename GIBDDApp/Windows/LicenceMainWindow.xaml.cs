@@ -85,7 +85,7 @@ namespace GIBDDApp.Windows
         private void RowChangeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            new DriversEditWindow(1).ShowDialog();
+            new LicenceEditWindow(1).ShowDialog();
             LoadDriversData();
             this.Show();
         }
@@ -105,7 +105,7 @@ namespace GIBDDApp.Windows
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            new DriversEditWindow(0).ShowDialog();
+            new LicenceEditWindow(0).ShowDialog();
             LoadDriversData();
             this.Show();
         }
@@ -128,6 +128,17 @@ namespace GIBDDApp.Windows
         private void ButtonDTP_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void RowStatusHistory_Click(object sender, RoutedEventArgs e)
+        {
+            for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
+                if (vis is DataGridRow)
+                {
+                    var row = (DataGridRow)vis;
+                    var item = row.Item as LicenceFullInfo;
+                    new StatusHistoryWindow(item.Licence).Show();
+                }
         }
     }
 }

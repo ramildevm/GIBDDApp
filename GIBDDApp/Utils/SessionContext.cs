@@ -10,6 +10,7 @@ namespace GIBDDApp.Utils
     {
         public static int Attempts { get; set; } = 0;
         public static Users CurrentUser { get; set; } = null;
+        public static Drivers CurrentDriver { get; set; } = null;
         public static TimeSpan CurrentTime { get; set; }
         public static TimeSpan TimerInterval { get; set; } = TimeSpan.FromSeconds(0);
         public static void SetDefaults()

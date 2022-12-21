@@ -43,26 +43,26 @@
         </Grid>
         <DataGrid  Margin="10,10,10,70" Grid.Row="1" x:Name="dgridDrivers" FontFamily="Comic Sans MS" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding Path=Drivers.Id}"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Margin="5" Height="30" Width="30" Source="{Binding Path=Photo}"/>
+                            <Image Margin="5" Height="30" Width="30" Source="{Binding Path=Drivers.Photo}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Имя" IsReadOnly="True" Binding="{Binding Path=Name}"/>
-                <DataGridTextColumn Header="Второе имя" IsReadOnly="True" Binding="{Binding Path=MiddleName}"/>
-                <DataGridTextColumn Header="Серия паспорта" IsReadOnly="True" Binding="{Binding Path=PassportSeries}"/>
-                <DataGridTextColumn Header="Номер паспорта" IsReadOnly="True" Binding="{Binding Path=PassportNumber}"/>
-                <DataGridTextColumn Header="Индекс" IsReadOnly="True" Binding="{Binding Path=PostCode}"/>
-                <DataGridTextColumn Header="Адрес прописки" IsReadOnly="True" Binding="{Binding Path=Address}"/>
-                <DataGridTextColumn Header="Адрес прожвания" IsReadOnly="True" Binding="{Binding Path=AddressLife}"/>
-                <DataGridTextColumn Header="Компания" IsReadOnly="True" Binding="{Binding Path=Company}"/>
-                <DataGridTextColumn Header="Должность" IsReadOnly="True" Binding="{Binding Path=Jobname}"/>
-                <DataGridTextColumn Header="Телефон" IsReadOnly="True" Binding="{Binding Path=Phone}"/>
-                <DataGridTextColumn Header="Email" IsReadOnly="True" Binding="{Binding Path=Email}"/>
-                <DataGridTextColumn Header="Описание" IsReadOnly="True" Binding="{Binding Path=Description}"/>
+                <DataGridTextColumn Header="Имя" IsReadOnly="True" Binding="{Binding Path=Drivers.Name}"/>
+                <DataGridTextColumn Header="Второе имя" IsReadOnly="True" Binding="{Binding Path=Drivers.MiddleName}"/>
+                <DataGridTextColumn Header="Серия паспорта" IsReadOnly="True" Binding="{Binding Path=Drivers.PassportSeries}"/>
+                <DataGridTextColumn Header="Номер паспорта" IsReadOnly="True" Binding="{Binding Path=Drivers.PassportNumber}"/>
+                <DataGridTextColumn Header="Индекс" IsReadOnly="True" Binding="{Binding Path=Drivers.PostCode}"/>
+                <DataGridTextColumn Header="Адрес прописки" IsReadOnly="True" Binding="{Binding Path=Drivers.Address}"/>
+                <DataGridTextColumn Header="Адрес прожвания" IsReadOnly="True" Binding="{Binding Path=Drivers.AddressLife}"/>
+                <DataGridTextColumn Header="Компания" IsReadOnly="True" Binding="{Binding Path=Drivers.Company}"/>
+                <DataGridTextColumn Header="Должность" IsReadOnly="True" Binding="{Binding Path=Drivers.Jobname}"/>
+                <DataGridTextColumn Header="Телефон" IsReadOnly="True" Binding="{Binding Path=Drivers.Phone}"/>
+                <DataGridTextColumn Header="Email" IsReadOnly="True" Binding="{Binding Path=Drivers.Email}"/>
+                <DataGridTextColumn Header="Описание" IsReadOnly="True" Binding="{Binding Path=Drivers.Description}"/>
                 
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>

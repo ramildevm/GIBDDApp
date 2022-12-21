@@ -57,10 +57,6 @@ namespace GIBDDApp
         [StringLength(250)]
         public string Description { get; set; }
 
-        public string ButtonText { get; set; } = "Изменить";
-
-        public Visibility DeleteButtonVisibility { get; set; } = Visibility.Visible;
-
         public virtual Licences Licences { get; set; }
     }
 }

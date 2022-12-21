@@ -20,23 +20,47 @@ namespace GIBDDApp.Windows
     /// </summary>
     public partial class DriversMainWindow : Window
     {
-        private List<Drivers> griditems;
+        private List<DriversInfo> griditems;
+        private bool isPick;
 
+        class DriversInfo
+        {
+            private readonly Drivers drivers;
+
+            public DriversInfo(Drivers drivers)
+            {
+                this.drivers = drivers;
+            }
+            public string ButtonText { get; set; } = "Изменить";
+            public Visibility DeleteButtonVisibility { get; set; } = Visibility.Visible;
+            public Drivers Drivers { get { return drivers; } }
+        }
         public DriversMainWindow(int mode)
         {
             InitializeComponent();
+            this.isPick = (mode == 1) ? true : false;
             LoadDriversData();
             App.RestartTimer();
         }
 
         private void LoadDriversData()
-        {            
-            using(var db = new EntityModel())
+        {
+            griditems = new List<DriversInfo>();
+            using (var db = new EntityModel())
             {
-                griditems = db.Drivers.ToList();
-                foreach(var d in griditems)
+                var list = db.Drivers.ToList();
+                foreach(var d in list)
                 {
                     d.Photo = "pack://application:,,,/Resources/Drivers/" + d.Photo;
+                    var item = new DriversInfo(d);
+                    if (!isPick)
+                        griditems.Add(item);
+                    else
+                    {
+                        item.ButtonText = "Выбрать";
+                        item.DeleteButtonVisibility = Visibility.Collapsed;
+                        griditems.Add(item);
+                    }
                 }
                 dgridDrivers.ItemsSource = griditems;
             }
@@ -45,6 +69,13 @@ namespace GIBDDApp.Windows
 
         private void RowChangeButton_Click(object sender, RoutedEventArgs e)
         {
+            for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
+                if (vis is DataGridRow)
+                {
+                    var row = (DataGridRow)vis;
+                    var item = row.Item as DriversInfo;
+                    SessionContext.CurrentDriver = item.Drivers;
+                }
             this.Hide();
             new DriversEditWindow(1).ShowDialog();
             LoadDriversData();
@@ -57,7 +88,7 @@ namespace GIBDDApp.Windows
                 if (vis is DataGridRow)
                 {
                     var row = (DataGridRow)vis;
-                    var item = row.Item as Drivers;
+                    var item = row.Item as DriversInfo;
                     griditems.Remove(item);
                     dgridDrivers.Items.Refresh();
                 }
@@ -65,6 +96,7 @@ namespace GIBDDApp.Windows
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
+            SessionContext.CurrentDriver = new Drivers();
             this.Hide();
             new DriversEditWindow(0).ShowDialog();
             LoadDriversData();
