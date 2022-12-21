@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GIBDDApp"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Icon="/Resources/gibdd_logo.png"
+        Title="Окно авторизации"
         Height="500" Width="750" MinHeight="450" MinWidth="550">
     <Window.Resources>
         <Style x:Key="Lbl13" TargetType="Label">

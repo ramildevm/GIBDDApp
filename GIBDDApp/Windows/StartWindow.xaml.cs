@@ -79,7 +79,8 @@ namespace GIBDDApp
             {
                 if (SessionContext.CurrentUser.Role == "Инспектор")
                 {
-                    var driversWindow = new DriversMainWindow();
+                    //var driversWindow = new DriversMainWindow(0);
+                    var driversWindow = new LicenceMainWindow();
                     this.Close();
                     driversWindow.ShowDialog();
                 }

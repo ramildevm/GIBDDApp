@@ -5,6 +5,7 @@ namespace GIBDDApp
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Windows;
 
     public partial class Drivers
     {
@@ -55,6 +56,10 @@ namespace GIBDDApp
 
         [StringLength(250)]
         public string Description { get; set; }
+
+        public string ButtonText { get; set; } = "Изменить";
+
+        public Visibility DeleteButtonVisibility { get; set; } = Visibility.Visible;
 
         public virtual Licences Licences { get; set; }
     }

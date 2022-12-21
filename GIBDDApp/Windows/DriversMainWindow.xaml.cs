@@ -22,15 +22,15 @@ namespace GIBDDApp.Windows
     {
         private List<Drivers> griditems;
 
-        public DriversMainWindow()
+        public DriversMainWindow(int mode)
         {
             InitializeComponent();
-            LoadDriversdata();
+            LoadDriversData();
             App.RestartTimer();
         }
 
-        private void LoadDriversdata()
-        {
+        private void LoadDriversData()
+        {            
             using(var db = new EntityModel())
             {
                 griditems = db.Drivers.ToList();
@@ -45,7 +45,10 @@ namespace GIBDDApp.Windows
 
         private void RowChangeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Hide();
+            new DriversEditWindow(1).ShowDialog();
+            LoadDriversData();
+            this.Show();
         }
 
         private void RowDeleteButton_Click(object sender, RoutedEventArgs e)
@@ -62,12 +65,30 @@ namespace GIBDDApp.Windows
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            new DriversEditWindow(0).Show();
-            this.Close();
+            this.Hide();
+            new DriversEditWindow(0).ShowDialog();
+            LoadDriversData();
+            this.Show();
         }
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
             App.RestartTimer();
+        }
+
+        private void ButtonLicence_Click(object sender, RoutedEventArgs e)
+        {
+            new LicenceMainWindow().Show();
+            this.Close();
+        }
+
+        private void ButtonFines_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonDTP_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

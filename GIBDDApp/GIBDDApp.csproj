@@ -72,6 +72,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\LicenceMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\StartWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -98,6 +102,9 @@
     </Compile>
     <Compile Include="Windows\DriversMainWindow.xaml.cs">
       <DependentUpon>DriversMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LicenceMainWindow.xaml.cs">
+      <DependentUpon>LicenceMainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
