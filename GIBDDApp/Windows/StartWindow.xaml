@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GIBDDApp"
         mc:Ignorable="d" Icon="/Resources/gibdd_logo.png"
         Title="Окно авторизации"
-        Height="500" Width="750" MinHeight="450" MinWidth="550">
+        Height="500" Width="750" MinHeight="400" MinWidth="550">
     <Window.Resources>
         <Style x:Key="Lbl13" TargetType="Label">
             <Setter Property="FontSize" Value="13"/>

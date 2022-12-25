@@ -123,11 +123,14 @@ namespace GIBDDApp.Windows
         private void ButtonFines_Click(object sender, RoutedEventArgs e)
         {
 
+            new FinesMainWindow().Show();
+            this.Close();
         }
 
         private void ButtonDTP_Click(object sender, RoutedEventArgs e)
         {
-
+            new DTPMainWindow().Show();
+            this.Close();
         }
 
         private void RowStatusHistory_Click(object sender, RoutedEventArgs e)

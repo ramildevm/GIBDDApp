@@ -103,7 +103,7 @@
                 <TextBox Grid.Column="1" Grid.Row="9" MaxLength="10" x:Name="txtWeight"/>
                 <TextBlock Grid.Column="0" Grid.Row="10"  Text="Цвет:"/>
                 <UniformGrid Grid.Column="1" Grid.Row="10" Columns="2">
-                    <TextBox  MaxLength="60" x:Name="txtColor" IsReadOnly="True"/>
+                    <ComboBox Name="colorBox" Margin="10" SelectedValuePath="Name"/>
                     <Button Name="btnChooseColor" Content="Выбрать" Click="ButtonPickColor_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Background="#FFB5D5CA" FontFamily="Comic Sans MS" FontWeight="Bold" Grid.Row="1" Height="25" Width="150"/>
                 </UniformGrid>
                 <TextBlock Grid.Column="0" Grid.Row="11"  Text="Тип двигателя:"/>

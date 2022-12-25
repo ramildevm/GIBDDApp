@@ -1,4 +1,4 @@
-﻿<Window x:Class="GIBDDApp.Windows.FinesMainWindow"
+﻿<Window x:Class="GIBDDApp.Windows.DTPMainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GIBDDApp.Windows"
         mc:Ignorable="d" Icon="/Resources/gibdd_logo.png"
         MouseMove="Window_MouseMove"
-        Title="Список штрафов" Height="650" Width="800" MinHeight="550" MinWidth="800">
+        Title="Список ДТП" Height="650" Width="800" MinHeight="550" MinWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -39,42 +39,47 @@
             <TextBlock Grid.Column="1" Text="ГИБДД" TextAlignment="Left"/>
             <Button Grid.Column="2" HorizontalAlignment="Center" Content="Список водителей" Click="ButtonDrivers_Click" />
             <Button Grid.Column="3" HorizontalAlignment="Center" Content="Список ВУ" Click="ButtonLicence_Click" />
-            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Список ДТП" Click="ButtonDTP_Click" />
+            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Список штрафов" Click="ButtonFines_Click" />
         </Grid>
-        <DataGrid  Margin="10,10,10,10" Grid.Row="1" x:Name="dgridFines" FontFamily="Comic Sans MS" AutoGenerateColumns="False">
+        <DataGrid  Margin="10,10,10,70" Grid.Row="1" x:Name="dgridDTP" FontFamily="Comic Sans MS" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding Path=Id}"/>
-                <DataGridTemplateColumn Header="Гос. номер">
+                <DataGridTextColumn Header="Адрес" IsReadOnly="True" Binding="{Binding Path=Address}"/>
+                <DataGridTextColumn Header="Другие данные" IsReadOnly="True" Binding="{Binding Path=OtherInfo}"/>
+                <DataGridTextColumn Header="Жертвы" IsReadOnly="True" Binding="{Binding Path=Victims}"/>
+                <DataGridTextColumn Header="Комментарии" IsReadOnly="True" Binding="{Binding Path=Comment}"/>
+                <DataGridTextColumn Header="Дата" IsReadOnly="True" Binding="{Binding Path=Date}"/>
+                <DataGridTextColumn Header="Классификация" IsReadOnly="True" Binding="{Binding Path=Type}"/>
+                <DataGridTemplateColumn MaxWidth="200" Header="Схема">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox x:Name="txtCarNumber" Text="{Binding Path=CarNumber}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Регион" IsReadOnly="True" Binding="{Binding Path=Region}"/>
-                <DataGridTextColumn Header="Дата" IsReadOnly="True" Binding="{Binding Path=CreateDate}"/>
-                <DataGridTemplateColumn Header="Фото">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Width="100" Height="100" Source="{Binding Path=Photo}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Name="btnEdit" Margin="5" Content="Сохранить" Click="RowChangeButton_Click" Background="#FCE0A9AF"/>
+                            <Image Source="{Binding Path=Scheme}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Margin="5" Click="RowDeleteButton_Click" Background="#FCE0A9AF" Content="Удалить"/>
+                            <Button Name="btnEdit" Margin="5" Content="Изменить" Click="RowChangeButton_Click" Background="#FCE0A9AF"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnEdit" Margin="5" Content="Изменить" Click="RowChangeButton_Click" Background="#FCE0A9AF"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Margin="5" Click="RowDeleteButton_Click" Background="#FCE0A9AF"  Content="Удалить"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Content="Добавить" Click="ButtonAdd_Click" Background="#FCE0A9AF" FontFamily="Comic Sans MS" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Margin="20" Grid.Row="1" Height="40" Width="150"/>
     </Grid>
 </Window>

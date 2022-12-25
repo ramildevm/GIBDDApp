@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\DTPMainWindow.xaml.cs">
+      <DependentUpon>DTPMainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\FinesMainWindow.xaml.cs">
       <DependentUpon>FinesMainWindow.xaml</DependentUpon>
     </Compile>
@@ -78,6 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\DriversMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DTPMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -363,6 +370,9 @@
     <Resource Include="Resources\Drivers\198-kiss.png" />
     <Resource Include="Resources\Drivers\199-angry.png" />
     <Resource Include="Resources\Drivers\200-sleepy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\fine1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

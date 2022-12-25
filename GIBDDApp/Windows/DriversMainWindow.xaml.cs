@@ -39,6 +39,7 @@ namespace GIBDDApp.Windows
         {
             InitializeComponent();
             this.isPick = (mode == 1) ? true : false;
+            dgridDrivers.CanUserAddRows = false;
             LoadDriversData();
             App.RestartTimer();
         }
@@ -51,7 +52,7 @@ namespace GIBDDApp.Windows
                 var list = db.Drivers.ToList();
                 foreach(var d in list)
                 {
-                    d.Photo = "pack://application:,,,/Resources/Drivers/" + d.Photo;
+                    d.Photo = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Resources\\Drivers\\" + d.Photo;
                     var item = new DriversInfo(d);
                     if (!isPick)
                         griditems.Add(item);
@@ -64,7 +65,8 @@ namespace GIBDDApp.Windows
                 }
                 dgridDrivers.ItemsSource = griditems;
             }
-            dgridDrivers.CanUserAddRows = false;
+            dgridDrivers.Items.Refresh();
+
         }
 
         private void RowChangeButton_Click(object sender, RoutedEventArgs e)
@@ -74,7 +76,8 @@ namespace GIBDDApp.Windows
                 {
                     var row = (DataGridRow)vis;
                     var item = row.Item as DriversInfo;
-                    SessionContext.CurrentDriver = item.Drivers;
+                    using(var db = new EntityModel())
+                        SessionContext.CurrentDriver = db.Drivers.Find(item.Drivers.Id);
                 }
             this.Hide();
             new DriversEditWindow(1).ShowDialog();
@@ -89,6 +92,12 @@ namespace GIBDDApp.Windows
                 {
                     var row = (DataGridRow)vis;
                     var item = row.Item as DriversInfo;
+                    using(var db = new EntityModel())
+                    {
+                        var driver = db.Drivers.Find(item.Drivers.Id);
+                        db.Entry(driver).State = System.Data.Entity.EntityState.Deleted;
+                        db.SaveChanges();
+                    }
                     griditems.Remove(item);
                     dgridDrivers.Items.Refresh();
                 }
@@ -115,12 +124,14 @@ namespace GIBDDApp.Windows
 
         private void ButtonFines_Click(object sender, RoutedEventArgs e)
         {
-
+            new FinesMainWindow().Show();
+            this.Close();
         }
 
         private void ButtonDTP_Click(object sender, RoutedEventArgs e)
         {
-
+            new DTPMainWindow().Show();
+            this.Close();
         }
     }
 }
