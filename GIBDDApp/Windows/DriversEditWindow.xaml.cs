@@ -48,11 +48,7 @@ namespace GIBDDApp.Windows
         {
             this.Close();
         }
-        private static readonly Regex _regex = new Regex("[^0-9.-]+"); 
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
+        
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             foreach (var text in new string[] { txtName.Text, txtMiddleName.Text, txtNumber.Text, txtPhone.Text, txtPhoto.Text, txtPostCode.Text, txtSeries.Text, txtJob.Text, txtCompany.Text, txtAddress.Text, txtEmail.Text })
@@ -61,7 +57,7 @@ namespace GIBDDApp.Windows
                     MessageBox.Show("Не все поля заполнены!");
                     return;
                 }
-            if (!IsTextAllowed(txtPostCode.Text)|| !IsTextAllowed(txtSeries.Text) || !IsTextAllowed(txtNumber.Text))
+            if (!ValidationUtils.IsTextAllowed(txtPostCode.Text)|| !ValidationUtils.IsTextAllowed(txtSeries.Text) || !ValidationUtils.IsTextAllowed(txtNumber.Text))
             {
                 MessageBox.Show("Введены некорректные данные!");
                 return;

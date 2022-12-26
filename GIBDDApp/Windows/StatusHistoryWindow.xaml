@@ -10,7 +10,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
-            <RowDefinition />
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Height="80" Background="#FFB5D5CA">
             <Grid.ColumnDefinitions>
@@ -35,5 +36,14 @@
                 <DataGridTextColumn Header="Статус" IsReadOnly="True" Binding="{Binding Path=Status}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <UniformGrid Grid.Row="2" Columns="2">
+            <ComboBox Name="statusBox" Margin="10">
+                <TextBlock FontFamily="Comic Sans MS" Text="активен"/>
+                <TextBlock FontFamily="Comic Sans MS" Text="утратил силу"/>
+                <TextBlock FontFamily="Comic Sans MS" Text="приостановлен"/>
+                <TextBlock FontFamily="Comic Sans MS" Text="изъят"/>
+            </ComboBox>
+            <Button Margin="5" FontSize="14" Background="#FFB5D5CA" FontFamily="Comic Sans MS" FontWeight="Bold" Content="Добавить" Click="Button_Click"/>
+        </UniformGrid>
     </Grid>
 </Window>

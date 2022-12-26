@@ -82,42 +82,40 @@
                     </Style>
                 </Grid.Resources>
                 <TextBlock Grid.Column="0" Grid.Row="0"  Text="Дата получения:"/>
-                <TextBox Grid.Column="1" Grid.Row="0" MaxLength="50" x:Name="txtDate"/>
+                <TextBox Grid.Column="1" Grid.Row="0" MaxLength="50" x:Name="txtDate" Text="{Binding Path=LicenceDate, Mode=OneWay}"/>
                 <TextBlock Grid.Column="0" Grid.Row="1" Text="Дата истечения срока:"/>
-                <TextBox Grid.Column="1" Grid.Row="1" MaxLength="50" x:Name="txtExpiredDate"/>
+                <TextBox Grid.Column="1" Grid.Row="1" MaxLength="50" x:Name="txtExpiredDate" Text="{Binding Path=ExpireDate, Mode=OneWay}"/>
                 <TextBlock Grid.Column="0" Grid.Row="2"  Text="Категории:"/>
-                <TextBox Grid.Column="1" Grid.Row="2" MaxLength="25" x:Name="txtCategories"/>
+                <TextBox Grid.Column="1" Grid.Row="2" MaxLength="25" x:Name="txtCategories" Text="{Binding Path=Categories, Mode=TwoWay}"/>
                 <TextBlock Grid.Column="0" Grid.Row="3"  Text="Серия:"/>
-                <TextBox Grid.Column="1" Grid.Row="3" MaxLength="5" x:Name="txtSeries"/>
+                <TextBox Grid.Column="1" Grid.Row="3" MaxLength="5" x:Name="txtSeries" Text="{Binding Path=LicenceSeries, Mode=TwoWay}"/>
                 <TextBlock Grid.Column="0" Grid.Row="4" Text="Номер:"/>
-                <TextBox Grid.Column="1" Grid.Row="4" MaxLength="6" x:Name="txtNumber"/>
+                <TextBox Grid.Column="1" Grid.Row="4" MaxLength="6" x:Name="txtNumber" Text="{Binding Path=LicenceNumber, Mode=TwoWay}"/>
                 <TextBlock Grid.Column="0" Grid.Row="5"  Text="VIN:"/>
-                <TextBox Grid.Column="1" Grid.Row="5" MaxLength="17" x:Name="txtVIN"/>
+                <TextBox Grid.Column="1" Grid.Row="5" MaxLength="17" x:Name="txtVIN" Text="{Binding Path=VIN, Mode=TwoWay}"/>
                 <TextBlock Grid.Column="0" Grid.Row="6"  Text="Производитель:"/>
-                <TextBox Grid.Column="1" Grid.Row="6" MaxLength="50" x:Name="txtManufacturer"/>
+                <TextBox Grid.Column="1" Grid.Row="6" MaxLength="50" x:Name="txtManufacturer" Text="{Binding Path=Manufacturer, Mode=TwoWay}"/>
                 <TextBlock Grid.Column="0" Grid.Row="7" Text="Модель:" />
-                <TextBox Grid.Column="1" Grid.Row="7" MaxLength="50" x:Name="txtModel"/>
+                <TextBox Grid.Column="1" Grid.Row="7" MaxLength="50" x:Name="txtModel" Text="{Binding Path=Model, Mode=TwoWay}"/>
                 <TextBlock Grid.Column="0" Grid.Row="8"  Text="Год:"/>
-                <TextBox Grid.Column="1" Grid.Row="8" MaxLength="4" x:Name="txtYear"/>
+                <TextBox Grid.Column="1" Grid.Row="8" MaxLength="4" x:Name="txtYear" Text="{Binding Path=Year, Mode=TwoWay}"/>
                 <TextBlock Grid.Column="0" Grid.Row="9"  Text="Вес:"/>
-                <TextBox Grid.Column="1" Grid.Row="9" MaxLength="10" x:Name="txtWeight"/>
+                <TextBox Grid.Column="1" Grid.Row="9" MaxLength="10" x:Name="txtWeight" Text="{Binding Path=Weight, Mode=TwoWay}"/>
                 <TextBlock Grid.Column="0" Grid.Row="10"  Text="Цвет:"/>
                 <UniformGrid Grid.Column="1" Grid.Row="10" Columns="2">
-                    <ComboBox Name="colorBox" Margin="10" SelectedValuePath="Name"/>
-                    <Button Name="btnChooseColor" Content="Выбрать" Click="ButtonPickColor_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Background="#FFB5D5CA" FontFamily="Comic Sans MS" FontWeight="Bold" Grid.Row="1" Height="25" Width="150"/>
+                    <ComboBox Name="colorBox" Margin="10" DisplayMemberPath="Name"/>
                 </UniformGrid>
                 <TextBlock Grid.Column="0" Grid.Row="11"  Text="Тип двигателя:"/>
                 <UniformGrid Grid.Column="1" Grid.Row="11" Columns="2">
-                    <TextBox  MaxLength="60" x:Name="txtPhoto" IsReadOnly="True"/>
-                    <Button Name="btnChoose" Content="Выбрать" Click="ButtonPickEngine_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Background="#FFB5D5CA" FontFamily="Comic Sans MS" FontWeight="Bold" Grid.Row="1" Height="25" Width="150"/>
+                    <ComboBox Name="engineTypeBox" Margin="10" DisplayMemberPath="NameRU"/>
                 </UniformGrid>
                 <TextBlock Grid.Column="0" Grid.Row="12"  Text="Водитель:"/>
                 <UniformGrid Grid.Column="1" Grid.Row="12" Columns="2">
-                    <TextBox  MaxLength="60" x:Name="txtDriverId" IsReadOnly="True"/>
+                    <TextBox  MaxLength="60" x:Name="txtDriver" IsReadOnly="True"/>
                     <Button Name="btnChooseDriver" Content="Выбрать" Click="ButtonPickDriver_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Background="#FFB5D5CA" FontFamily="Comic Sans MS" FontWeight="Bold" Grid.Row="1" Height="25" Width="150"/>
                 </UniformGrid>
                 <TextBlock Grid.Column="0" Grid.Row="13"  Text="Тип привода:"/>
-                <TextBox Grid.Column="1" Grid.Row="13" MaxLength="50" x:Name="txtDrive"/>
+                <TextBox Grid.Column="1" Grid.Row="13" MaxLength="50" x:Name="txtDrive" Text="{Binding Path=DriveType, Mode=TwoWay}"/>
             </Grid>
         </ScrollViewer>
         <Button Name="btnClose" Content="Отмена" Click="ButtonClose_Click" Background="#FCE0A9AF" FontFamily="Comic Sans MS" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="20" Grid.Row="1" Height="40" Width="150"/>

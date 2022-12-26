@@ -73,7 +73,6 @@
                         <Setter Property="Margin" Value="10"/>
                     </Style>
                     <Style TargetType="Button">
-                        <Setter Property="Background" Value="Orange"/>
                         <Setter Property="FontFamily" Value="Comic Sans MS"/>
                         <Setter Property="BorderThickness" Value="0"/>
                         <Setter Property="FontSize" Value="16"/>

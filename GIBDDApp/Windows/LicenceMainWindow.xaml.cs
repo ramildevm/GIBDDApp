@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GIBDDApp.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace GIBDDApp.Windows
         public LicenceMainWindow()
         {
             InitializeComponent();
-            LoadDriversData();
+            LoadLicencesData();
         }
         class LicenceFullInfo
         {
@@ -47,7 +48,7 @@ namespace GIBDDApp.Windows
             public string StatusText { get; set; }
         }
 
-        private void LoadDriversData()
+        private void LoadLicencesData()
         {
             griditems = new List<LicenceFullInfo>();
             using (var db = new EntityModel())
@@ -57,7 +58,7 @@ namespace GIBDDApp.Windows
                 {
                     var color = db.Colors.FirstOrDefault(v => v.ColorId == l.Color);
                     var engine = db.EngineTypes.FirstOrDefault(v => v.Id==l.EngineType);
-                    var status = db.LicenseStatus.FirstOrDefault(v => v.LicenceId==l.DriverId);
+                    var status = db.LicenseStatus.OrderByDescending(v => v.Id).FirstOrDefault(v => v.LicenceId==l.DriverId);
                     var item = new LicenceFullInfo(l, color, engine);
                     item.StatusText = status.Status;
                     switch (status.Status)
@@ -80,13 +81,22 @@ namespace GIBDDApp.Windows
                 dgridLicence.ItemsSource = griditems;
             }
             dgridLicence.CanUserAddRows = false;
+            dgridLicence.Items.Refresh();
         }
 
         private void RowChangeButton_Click(object sender, RoutedEventArgs e)
         {
+            for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
+                if (vis is DataGridRow)
+                {
+                    var row = (DataGridRow)vis;
+                    var item = row.Item as LicenceFullInfo;
+                    using (var db = new EntityModel())
+                        SessionContext.CurrentLicence = item.Licence;
+                }
             this.Hide();
             new LicenceEditWindow(1).ShowDialog();
-            LoadDriversData();
+            LoadLicencesData();
             this.Show();
         }
 
@@ -97,6 +107,12 @@ namespace GIBDDApp.Windows
                 {
                     var row = (DataGridRow)vis;
                     var item = row.Item as LicenceFullInfo;
+                    using (var db = new EntityModel())
+                    {
+                        var driver = db.Licences.Find(item.Licence.DriverId);
+                        db.Entry(driver).State = System.Data.Entity.EntityState.Deleted;
+                        db.SaveChanges();
+                    }
                     griditems.Remove(item);
                     dgridLicence.Items.Refresh();
                 }
@@ -104,9 +120,10 @@ namespace GIBDDApp.Windows
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
+            SessionContext.CurrentLicence = new Licences();
             this.Hide();
             new LicenceEditWindow(0).ShowDialog();
-            LoadDriversData();
+            LoadLicencesData();
             this.Show();
         }
         private void Window_MouseMove(object sender, MouseEventArgs e)
@@ -140,7 +157,8 @@ namespace GIBDDApp.Windows
                 {
                     var row = (DataGridRow)vis;
                     var item = row.Item as LicenceFullInfo;
-                    new StatusHistoryWindow(item.Licence).Show();
+                    new StatusHistoryWindow(item.Licence).ShowDialog();
+                    LoadLicencesData();
                 }
         }
     }

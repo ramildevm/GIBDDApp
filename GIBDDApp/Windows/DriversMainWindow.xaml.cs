@@ -39,9 +39,16 @@ namespace GIBDDApp.Windows
         {
             InitializeComponent();
             this.isPick = (mode == 1) ? true : false;
-            dgridDrivers.CanUserAddRows = false;
+            SetOptions();
             LoadDriversData();
             App.RestartTimer();
+        }
+
+        private void SetOptions()
+        {
+            dgridDrivers.CanUserAddRows = false;
+            if (isPick)
+                btnDTP.Visibility = btnFines.Visibility = btnLicence.Visibility = Visibility.Hidden;
         }
 
         private void LoadDriversData()
@@ -60,7 +67,8 @@ namespace GIBDDApp.Windows
                     {
                         item.ButtonText = "Выбрать";
                         item.DeleteButtonVisibility = Visibility.Collapsed;
-                        griditems.Add(item);
+                        if(db.Licences.Find(d.Id)==null)
+                            griditems.Add(item);
                     }
                 }
                 dgridDrivers.ItemsSource = griditems;
@@ -76,9 +84,18 @@ namespace GIBDDApp.Windows
                 {
                     var row = (DataGridRow)vis;
                     var item = row.Item as DriversInfo;
-                    using(var db = new EntityModel())
-                        SessionContext.CurrentDriver = db.Drivers.Find(item.Drivers.Id);
+                    using (var db = new EntityModel())
+                        if (!isPick)
+                            SessionContext.CurrentDriver = db.Drivers.Find(item.Drivers.Id);
+                        else
+                            SessionContext.CurrentLicenceDriver = db.Drivers.Find(item.Drivers.Id);
                 }
+            if (isPick)
+            {
+                SessionContext.CurrentDriver = null;
+                this.Close();
+                return;
+            }
             this.Hide();
             new DriversEditWindow(1).ShowDialog();
             LoadDriversData();
